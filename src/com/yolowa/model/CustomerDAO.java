@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import util.DBUtil;
-
+//수정시 자기이름_ver00 형태로 올리기
 public class CustomerDAO {
 
 	Connection conn;
