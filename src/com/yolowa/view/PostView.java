@@ -7,6 +7,7 @@ public class PostView {
 	public static void print(List<PostDTO> plist) {
 		for (PostDTO bdto : plist) {
 			System.out.println(bdto);
+			System.out.println("ㄱㄶ롱호하");
 		}
 	}
 
