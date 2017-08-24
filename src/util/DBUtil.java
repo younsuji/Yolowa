@@ -9,6 +9,11 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+
+//은진 짱
+
+
+
 public class DBUtil {
 
 	public static Connection getConnect() {
