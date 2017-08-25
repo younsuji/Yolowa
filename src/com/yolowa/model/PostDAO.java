@@ -36,8 +36,7 @@ public class PostDAO {
 			DBUtil.dbClose(conn, st, rs);
 		}
 		return string_list;
-	}
-	// 포스트 제목만 보기
+	}// 포스트 제목만 보기
 
 	// 포스트 전체보기
 	public List<PostDTO> selectAllPost() {
