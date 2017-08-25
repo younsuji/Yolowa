@@ -17,6 +17,7 @@ public class TicketbuyDAO {
 	int count;
 	String sql;
 	
+	//대분류로 DTO찾아서 list return
 	public List<TicketbuyDTO> selectByBigcat(String bigcat){
 		List<TicketbuyDTO> ticketbuy_list = new ArrayList<>();
 		String sql = "select * from ticketbuy where bigcat = "+bigcat;
@@ -32,7 +33,10 @@ public class TicketbuyDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			DBUtil.dbClose(conn, st, rs);
 		}
+		
 		return ticketbuy_list;
 		
 		
