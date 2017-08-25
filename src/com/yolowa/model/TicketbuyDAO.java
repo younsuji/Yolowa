@@ -26,31 +26,20 @@ public class TicketbuyDAO {
 		try {
 			st = conn.prepareStatement(sql);
 			rs = st.executeQuery();
-			while (rs.next())
-				;
-			{
+			while (rs.next()){
 				TicketbuyDTO ticketbuy_dto = makeTicketbuy_DTO(rs);
 				ticketbuy_list.add(ticketbuy_dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(conn, st, rs);
 		}
-
 		return ticketbuy_list;
-
 	}
+	//대분류로 DTO찾아서 list return 끝 
 
-	private TicketbuyDTO makeTicketbuy_DTO(ResultSet rs2) throws SQLException {
-		String bigcat = rs2.getString(1);
-		String smallcat = rs2.getString(2);
-		int t_min = rs2.getInt(3);
-		int t_price = rs2.getInt(4);
-		return new TicketbuyDTO(bigcat, smallcat, t_min, t_price);
-	}
-
+	
 	// 전체보기
 	public List<TicketbuyDTO> selectAllticketbuy() {
 		List<TicketbuyDTO> ticketbuy_list = new ArrayList<>();
@@ -64,9 +53,7 @@ public class TicketbuyDAO {
 				TicketbuyDTO ticketbuy_dto = makeTicketbuy_DTO(rs);
 				ticketbuy_list.add(ticketbuy_dto);
 			}
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(conn, st, rs);
@@ -77,21 +64,18 @@ public class TicketbuyDAO {
 
 	//추가
 	public int addticketbuy(TicketbuyDTO ticketbuy_dto) {
-		String sql = "insert into ticketbuy values (?,?,?,?)";
+		String sql = "insert into ticketbuy values (?, ?, ?, ?) ";
 		conn = DBUtil.getConnect();
 
 		try {
 			st = conn.prepareStatement(sql);
-
 			st.setString(1, ticketbuy_dto.getBigcat());
 			st.setString(2, ticketbuy_dto.getSmallcat());
 			st.setInt(3, ticketbuy_dto.getT_min());
 			st.setInt(4, ticketbuy_dto.getT_price());
 
 			count = st.executeUpdate();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(conn, st, rs);
@@ -99,4 +83,14 @@ public class TicketbuyDAO {
 		return count;
 	}
 	//추가 끝
+	
+	//ticketbuyDTO 생성
+	public TicketbuyDTO makeTicketbuy_DTO(ResultSet rs2) throws SQLException {
+		String bigcat = rs2.getString(1);
+		String smallcat = rs2.getString(2);
+		int t_min = rs2.getInt(3);
+		int t_price = rs2.getInt(4);
+		return new TicketbuyDTO(bigcat, smallcat, t_min, t_price);
+	}
+
 }

@@ -52,7 +52,6 @@ public class PostDAO {
 				post_list.add(post_dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(conn, st, rs);

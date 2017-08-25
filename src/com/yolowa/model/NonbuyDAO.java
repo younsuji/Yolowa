@@ -1,7 +1,6 @@
 package com.yolowa.model;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +29,6 @@ public class NonbuyDAO {
 				NonbuyDTO nonbuy_dto = makeNonbuy_DTO(rs);
 				nonbuy_list.add(nonbuy_dto);
 			}
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,14 +38,6 @@ public class NonbuyDAO {
 		return nonbuy_list;
 	}
 
-	private NonbuyDTO makeNonbuy_DTO(ResultSet rs2) throws SQLException {
-		String bigcat = rs2.getString(1);
-		String smallcat = rs2.getString(2);
-		String n_place = rs2.getString(3);
-		String n_time = rs2.getString(4);
-		int n_deposit = rs2.getInt(5);
-		return new NonbuyDTO(bigcat, smallcat, n_place, n_time, n_deposit);
-	}
 	//전체보기
 	public List<NonbuyDTO> selectAllnonbuy() {
 		List<NonbuyDTO> nonbuy_list = new ArrayList<>();
@@ -67,7 +57,6 @@ public class NonbuyDAO {
 		} finally {
 			DBUtil.dbClose(conn, st, rs);
 		}
-
 		return nonbuy_list;
 	}
 	//전체보기 끝
@@ -86,23 +75,20 @@ public class NonbuyDAO {
 
 			while (rs.next()) {
 				nonbuy_dto = makeNonbuy_DTO(rs);
-
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(conn, st, rs);
 		}
 		return nonbuy_dto;
-
 	}
 	//카테고리보기 끝
 
+	
 	// nonbuy 추가
-
 	public int addnonbuy(NonbuyDTO nonbuy_dto) {
-		String sql = "insert into nonbuy values (?,?,?,?,?)";
+		String sql = "insert into nonbuy values (?, ?, ?, ?, ?)";
 		conn = DBUtil.getConnect();
 
 		try {
@@ -115,20 +101,18 @@ public class NonbuyDAO {
 
 			count = st.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(conn, st, rs);
 		}
 		return count;
 	}
+	//nonbuy 추가 끝
 
 	// nonbuy 업데이트
-
 	public int updateNonbuy(NonbuyDTO nonbuy_dto) {
 		String sql = "update nonbuy set " + " n_place = ?,n_time =?, n_deposit =?"
 				+ " where bigcat =? and smallcat = ?";
-
 		conn = DBUtil.getConnect();
 
 		try {
@@ -141,20 +125,17 @@ public class NonbuyDAO {
 
 			count = st.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(conn, st, rs);
 		}
 		return count;
-
 	}
 	// nonbuy 업데이트 끝
 	
-
+	//삭제
 	public int deleteNonbuy(NonbuyDTO nonbuy_dto){
 		String sql = "delete from nonbuy where bigcat =? and smallcat =? ";
-		
 		conn = DBUtil.getConnect();
 		
 		try {
@@ -170,5 +151,17 @@ public class NonbuyDAO {
 			DBUtil.dbClose(conn, st, rs);
 		}
 		return count;
+	}
+	//삭제 끝
+	
+	
+	//Nonbuy_DTO 생성
+	public NonbuyDTO makeNonbuy_DTO(ResultSet rs2) throws SQLException {
+		String bigcat = rs2.getString(1);
+		String smallcat = rs2.getString(2);
+		String n_place = rs2.getString(3);
+		String n_time = rs2.getString(4);
+		int n_deposit = rs2.getInt(5);
+		return new NonbuyDTO(bigcat, smallcat, n_place, n_time, n_deposit);
 	}
 }

@@ -1,6 +1,5 @@
 package com.yolowa.controller;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,8 +7,6 @@ import com.yolowa.model.NonbuyDAO;
 import com.yolowa.model.NonbuyDTO;
 import com.yolowa.model.TicketbuyDAO;
 import com.yolowa.model.TicketbuyDTO;
-
-import util.DBUtil;
 
 public class ManageController {
 
@@ -38,14 +35,13 @@ public class ManageController {
 		while (true) {
 			System.out.println("작업선택");
 			int select = sc.nextInt();
+
 			switch (select) {
-
-			case 1: {
+			case 1: { // nonbuy 전체보기
 				nonbuy_list = nonbuy_dao.selectAllnonbuy();
-
 				break;
 			}
-			case 2: {
+			case 2: { // nonbuy 추가
 				System.out.println("bigcat 입력");
 				String bigcat = sc.next();
 				System.out.println("smallcat 입력");
@@ -53,7 +49,6 @@ public class ManageController {
 				System.out.println("장소 입력");
 				String n_place = sc.next();
 				System.out.println("시간 입력");
-				// 입력 방식 알려줄것 // DButil 에 date 로 시간 만들 함수 만들것!!
 				String n_time = sc.next();
 				System.out.println("보증금 입력");
 				int n_deposit = sc.nextInt();
@@ -67,7 +62,7 @@ public class ManageController {
 					System.out.println("입력실패");
 				break;
 			}
-			case 3: {
+			case 3: { // nonbuy 업데이트
 				System.out.println("업데이트할 bigcat 검색 ");
 				String bigcat = sc.next();
 				System.out.println("업데이트할 smallcat 검색 ");
@@ -90,8 +85,7 @@ public class ManageController {
 					System.out.println("업데이트 실패");
 				break;
 			}
-
-			case 4: {
+			case 4: { // nonbuy 삭제
 				System.out.println("삭제할 bigcat 검색 ");
 				String bigcat = sc.next();
 				System.out.println("삭제할 smallcat 검색 ");
@@ -104,15 +98,12 @@ public class ManageController {
 				else
 					System.out.println("삭제 실패");
 				break;
-
 			}
-			case 5: {
+			case 5: { // ticketbuy 전체보기
 				ticketbuy_list = ticketbuy_dao.selectAllticketbuy();
 				break;
 			}
-
-			case 6: {
-
+			case 6: { // ticketbuy 추가
 				System.out.println("bigcat 입력");
 				String bigcat = sc.next();
 				System.out.println("smallcat 입력");
@@ -133,13 +124,15 @@ public class ManageController {
 				break;
 			}
 
-			case 7: {
-				
-				
-			}
-			}
+			case 7: { // ticketbuy 업데이트
 
-		}
+			}
+			case 8: { // ticketbuy 삭제
 
-	}
+			}
+			}// switch 끝
+
+		} // while 끝
+
+	}// NonbuyMain 끝
 }

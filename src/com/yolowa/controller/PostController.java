@@ -21,7 +21,7 @@ public class PostController {
 			System.out.println("전체 포스트 보기"); // 방 리스트 보기 
 			System.out.println("특정 포스트 보기-1.nonbuy"); // 방 클릭하면 보일 내용
 			System.out.println("특정 포스트 보기-2.ticketbuy"); //방 클릭하면 보일 내용
-			System.out.println("포스트 작성하기");
+			System.out.println("포스트 작성하기"); // 방 만들기
 			System.out.println("");
 			System.out.println("");
 			System.out.println("");
@@ -48,10 +48,16 @@ public class PostController {
 				break;
 			}
 			case 5: {
+				System.out.print("게시글 제목>>");
+				String p_title = sc.next();
+				
 				System.out.println("bigcat 입력");
 				String bigcat = sc.next();
 				System.out.println("smallcat 입력");
 				String smallcat = sc.next();
+				
+				
+				
 				// nonbuy 나 ticketbuy 에서 찾아서 post 에 대분류 소분류 넣기.
 				
 				
