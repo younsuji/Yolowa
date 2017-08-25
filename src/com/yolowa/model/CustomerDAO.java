@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import util.DBUtil;
+
 //수정시 자기이름_ver00 형태로 올리기
 public class CustomerDAO {
 
@@ -92,6 +93,23 @@ public class CustomerDAO {
 			DBUtil.dbClose(conn, st, rs);
 		}
 		return cdto;
+	}
+
+	// 회원탈퇴
+	public int deleteCustomer(String c_id, String c_password) {
+		sql = "deleate from customer where c_id=? and c_password=?";
+		conn = DBUtil.getConnect();
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, c_id);
+			st.setString(2, c_password);
+			count = st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(conn, st, rs);
+		}
+		return count;
 	}
 
 	private CustomerDTO makeCustomer(ResultSet rs) throws SQLException {
