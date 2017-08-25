@@ -22,6 +22,15 @@ public class CustomerDTO {
 		this.c_point = c_point;
 	}
 
+	public CustomerDTO(String c_id, String c_password, String c_name, String c_phone, int c_point) {
+		super();
+		this.c_id = c_id;
+		this.c_password = c_password;
+		this.c_name = c_name;
+		this.c_phone = c_phone;
+		this.c_point = c_point;
+	}
+
 	public int getC_num() {
 		return c_num;
 	}
