@@ -74,7 +74,7 @@ public class CustomerDAO {
 		return cdto;
 	}
 
-	// 비밀번호 확인
+	// 아이디, 비밀번호 확인
 	public CustomerDTO selectByC_idpass(String c_id, String c_password) {
 		CustomerDTO cdto = null;
 		sql = "select * from CUSTOMER where c_id=? and c_password=?";
