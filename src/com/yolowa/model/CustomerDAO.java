@@ -16,16 +16,16 @@ public class CustomerDAO {
 	String sql;
 
 	// 회원가입
-	public int insertCustomer(CustomerDTO cdto) {
+	public int insertCustomer(CustomerDTO customer_dto) {
 		sql = "insert into customer values(sq_custom.nextval,?,?,?,?,?)";
 		conn = DBUtil.getConnect();
 		try {
 			st = conn.prepareStatement(sql);
-			st.setString(1, cdto.getC_id());
-			st.setString(2, cdto.getC_password());
-			st.setString(3, cdto.getC_name());
-			st.setString(4, cdto.getC_phone());
-			st.setInt(5, cdto.getC_point());
+			st.setString(1, customer_dto.getC_id());
+			st.setString(2, customer_dto.getC_password());
+			st.setString(3, customer_dto.getC_name());
+			st.setString(4, customer_dto.getC_phone());
+			st.setInt(5, customer_dto.getC_point());
 			count = st.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -35,16 +35,37 @@ public class CustomerDAO {
 		return count;
 	}
 
+	public int selectC_num(CustomerDTO customer_dto) {
+		String sql = "select max(c_num) from customer";
+		conn = util.DBUtil.getConnect();
+		int c_num = 0;
+		try {
+			st = conn.prepareStatement(sql);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				c_num = makec_num(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return c_num;
+	}
+
+	private int makec_num(ResultSet rs) throws SQLException {
+		int c_num = rs.getInt(1);
+		return c_num;
+	}
+
 	// 회원정보수정
-	public int updateCustomer(CustomerDTO cdto) {
-		sql = "update customer set c_password=?,c_phone=?,c_point=? where c_id=?";
+	public int updateCustomer(CustomerDTO customer_dto) {
+		sql = "update customer set c_password=?,c_phone=?,c_point=? where c_num=?";
 		conn = DBUtil.getConnect();
 		try {
 			st = conn.prepareStatement(sql);
-			st.setString(1, cdto.getC_password());
-			st.setString(2, cdto.getC_phone());
-			st.setInt(3, cdto.getC_point());
-			st.setString(4, cdto.getC_id());
+			st.setString(1, customer_dto.getC_password());
+			st.setString(2, customer_dto.getC_phone());
+			st.setInt(3, customer_dto.getC_point());
+			st.setInt(4, customer_dto.getC_num());
 			count = st.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,7 +77,7 @@ public class CustomerDAO {
 
 	// id로 검색하기
 	public CustomerDTO selectByC_id(String c_id) {
-		CustomerDTO cdto = null;
+		CustomerDTO customer_dto = null;
 		sql = "select * from CUSTOMER where c_id=?";
 		conn = DBUtil.getConnect();
 		try {
@@ -64,19 +85,19 @@ public class CustomerDAO {
 			st.setString(1, c_id);
 			rs = st.executeQuery();
 			while (rs.next()) {
-				cdto = makeCustomer(rs);
+				customer_dto = makeCustomer(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(conn, st, rs);
 		}
-		return cdto;
+		return customer_dto;
 	}
 
 	// 아이디, 비밀번호 확인
 	public CustomerDTO selectByC_idpass(String c_id, String c_password) {
-		CustomerDTO cdto = null;
+		CustomerDTO customer_dto = null;
 		sql = "select * from CUSTOMER where c_id=? and c_password=?";
 		conn = DBUtil.getConnect();
 		try {
@@ -85,19 +106,19 @@ public class CustomerDAO {
 			st.setString(2, c_password);
 			rs = st.executeQuery();
 			while (rs.next()) {
-				cdto = makeCustomer(rs);
+				customer_dto = makeCustomer(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(conn, st, rs);
 		}
-		return cdto;
+		return customer_dto;
 	}
 
 	// 회원탈퇴
 	public int deleteCustomer(String c_id, String c_password) {
-		sql = "deleate from customer where c_id=? and c_password=?";
+		sql = "delete from customer where c_id=? and c_password=?";
 		conn = DBUtil.getConnect();
 		try {
 			st = conn.prepareStatement(sql);

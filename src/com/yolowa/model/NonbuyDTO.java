@@ -1,19 +1,17 @@
 package com.yolowa.model;
 
-import java.sql.Date;
-
 public class NonbuyDTO {
 	private String bigcat;
 	private String smallcat;
 	private String n_place;
-	private Date n_time;
+	private String n_time;
 	private int n_deposit;
 
 	public NonbuyDTO() {
 		super();
 	}
 
-	public NonbuyDTO(String bigcat, String smallcat, String n_place, Date n_time, int n_deposit) {
+	public NonbuyDTO(String bigcat, String smallcat, String n_place, String n_time, int n_deposit) {
 		super();
 		this.bigcat = bigcat;
 		this.smallcat = smallcat;
@@ -46,11 +44,11 @@ public class NonbuyDTO {
 		this.n_place = n_place;
 	}
 
-	public Date getN_time() {
+	public String getN_time() {
 		return n_time;
 	}
 
-	public void setN_time(Date n_time) {
+	public void setN_time(String n_time) {
 		this.n_time = n_time;
 	}
 
