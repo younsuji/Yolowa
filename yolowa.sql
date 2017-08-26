@@ -111,7 +111,7 @@ CREATE TABLE nonbuy (
 	bigcat VARCHAR2(100) NOT NULL, /* 대분류 */
 	smallcat VARCHAR2(100) NOT NULL, /* 소분류 */
 	n_place VARCHAR2(100) NOT NULL, /* 장소 */
-	n_time DATE NOT NULL, /* 시간 */
+	n_time VARCHAR2(10) NOT NULL, /* 시간 */
 	n_deposit NUMBER NOT NULL /* 보증금 */
 );
 

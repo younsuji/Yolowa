@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import util.DBUtil;
 
-//수정시 자기이름_ver00 형태로 올리기
 public class CustomerDAO {
 
 	Connection conn;
@@ -116,6 +115,49 @@ public class CustomerDAO {
 		return customer_dto;
 	}
 
+	// 이름, 전화번호로 id 찾기
+	public CustomerDTO selectByC_namephone(String c_name, String c_phone) {
+		CustomerDTO customer_dto = null;
+		sql = "select * from CUSTOMER where c_name=? and c_phone=?";
+		conn = DBUtil.getConnect();
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, c_name);
+			st.setString(2, c_phone);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				customer_dto = makeCustomer(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(conn, st, rs);
+		}
+		return customer_dto;
+	}
+
+	// id, 이름, 전화번호로 password 찾기
+	public CustomerDTO selectByC_idnamephone(String c_id, String c_name, String c_phone) {
+		CustomerDTO customer_dto = null;
+		sql = "select * from CUSTOMER where c_id=? and c_name=? and c_phone=?";
+		conn = DBUtil.getConnect();
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, c_id);
+			st.setString(2, c_name);
+			st.setString(3, c_phone);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				customer_dto = makeCustomer(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(conn, st, rs);
+		}
+		return customer_dto;
+	}
+
 	// 회원탈퇴
 	public int deleteCustomer(String c_id, String c_password) {
 		sql = "delete from customer where c_id=? and c_password=?";
@@ -142,4 +184,5 @@ public class CustomerDAO {
 		int c_point = rs.getInt(6);
 		return new CustomerDTO(c_num, c_id, c_password, c_name, c_phone, c_point);
 	}
+
 }

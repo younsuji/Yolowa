@@ -60,7 +60,6 @@ public class PostDAO {
 		return post_list;
 	}// 포스트 전체보기
 
-	
 	// postDTO 만들기
 	public PostDTO makePostDTO(ResultSet rs2) throws SQLException {
 		int p_num = rs2.getInt(1);
