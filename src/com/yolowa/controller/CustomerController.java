@@ -1,7 +1,6 @@
 package com.yolowa.controller;
 
 
-//꺄하아ㅏㅎ아하아ㅏㅎ아하아하ㅏㅎ아ㅏㅎ아ㅏ하ㅏ
 import java.util.Scanner;
 import com.yolowa.model.CustomerDAO;
 import com.yolowa.model.CustomerDTO;
