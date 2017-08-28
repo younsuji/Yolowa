@@ -1,264 +1,273 @@
+
+create sequence sq_custom start with 1000;
+
+create sequence sq_post;
 /* customer */
 CREATE TABLE customer (
-	c_num NUMBER NOT NULL, /* È¸¿ø¹øÈ£ */
-	c_id VARCHAR2(100) unique NOT NULL, /* ¾ÆÀÌµğ */
-	c_password VARCHAR2(100) NOT NULL, /* ºñ¹Ğ¹øÈ£ */
-	c_name VARCHAR2(100) NOT NULL, /* ÀÌ¸§ */
-	c_phone VARCHAR2(11) unique NOT NULL, /* ÀüÈ­¹øÈ£ */
-	c_point NUMBER NOT NULL /* Æ÷ÀÎÆ® */
+   c_num NUMBER NOT NULL, /* íšŒì›ë²ˆí˜¸ */
+   c_id VARCHAR2(100) unique NOT NULL, /* ì•„ì´ë”” */
+   c_password VARCHAR2(100) NOT NULL, /* ë¹„ë°€ë²ˆí˜¸ */
+   c_name VARCHAR2(100) NOT NULL, /* ì´ë¦„ */
+   c_phone VARCHAR2(11) unique NOT NULL, /* ì „í™”ë²ˆí˜¸ */
+   c_point NUMBER NOT NULL /* í¬ì¸íŠ¸ */
 );
-create sequence sq_custom;
+
 COMMENT ON TABLE customer IS 'customer';
 
-COMMENT ON COLUMN customer.c_num IS 'È¸¿ø¹øÈ£';
+COMMENT ON COLUMN customer.c_num IS 'íšŒì›ë²ˆí˜¸';
 
-COMMENT ON COLUMN customer.c_id IS '¾ÆÀÌµğ';
+COMMENT ON COLUMN customer.c_id IS 'ì•„ì´ë””';
 
-COMMENT ON COLUMN customer.c_password IS 'ºñ¹Ğ¹øÈ£';
+COMMENT ON COLUMN customer.c_password IS 'ë¹„ë°€ë²ˆí˜¸';
 
-COMMENT ON COLUMN customer.c_name IS 'ÀÌ¸§';
+COMMENT ON COLUMN customer.c_name IS 'ì´ë¦„';
 
-COMMENT ON COLUMN customer.c_phone IS 'ÀüÈ­¹øÈ£';
+COMMENT ON COLUMN customer.c_phone IS 'ì „í™”ë²ˆí˜¸';
 
-COMMENT ON COLUMN customer.c_point IS 'Æ÷ÀÎÆ®';
+COMMENT ON COLUMN customer.c_point IS 'í¬ì¸íŠ¸';
 
 CREATE UNIQUE INDEX PK_customer
-	ON customer (
-		c_num ASC
-	);
+   ON customer (
+      c_num ASC
+   );
 
 ALTER TABLE customer
-	ADD
-		CONSTRAINT PK_customer
-		PRIMARY KEY (
-			c_num
-		);
+   ADD
+      CONSTRAINT PK_customer
+      PRIMARY KEY (
+         c_num
+      );
 
 /* post */
 CREATE TABLE post (
-	p_num NUMBER NOT NULL, /* ¹æ¹øÈ£ */
-	p_title VARCHAR2(100) NOT NULL, /* Á¦¸ñ */
-	p_date DATE NOT NULL, /* ³¯Â¥ */
-	p_max NUMBER NOT NULL, /* ¹æÀÎ¿ø */
-	p_comment VARCHAR2(300), /* ³²±â½Ç¸» */
-	bigcat VARCHAR2(100) NOT NULL, /* ´ëºĞ·ù */
-	smallcat VARCHAR2(100) NOT NULL /* ¼ÒºĞ·ù */
+   p_num NUMBER NOT NULL, /* ë°©ë²ˆí˜¸ */
+   p_title VARCHAR2(100) NOT NULL, /* ì œëª© */
+   p_date DATE NOT NULL, /* ë‚ ì§œ */
+   p_max NUMBER NOT NULL, /* ë°©ì¸ì› */
+   p_comment VARCHAR2(300), /* ë‚¨ê¸°ì‹¤ë§ */
+   bigcat VARCHAR2(100) NOT NULL, /* ëŒ€ë¶„ë¥˜ */
+   smallcat VARCHAR2(100) NOT NULL /* ì†Œë¶„ë¥˜ */
 );
-create sequence sq_post;
 
 COMMENT ON TABLE post IS 'post';
 
-COMMENT ON COLUMN post.p_num IS '¹æ¹øÈ£';
+COMMENT ON COLUMN post.p_num IS 'ë°©ë²ˆí˜¸';
 
-COMMENT ON COLUMN post.p_title IS 'Á¦¸ñ';
+COMMENT ON COLUMN post.p_title IS 'ì œëª©';
 
-COMMENT ON COLUMN post.p_date IS '³¯Â¥';
+COMMENT ON COLUMN post.p_date IS 'ë‚ ì§œ';
 
-COMMENT ON COLUMN post.p_max IS '¹æÀÎ¿ø';
+COMMENT ON COLUMN post.p_max IS 'ë°©ì¸ì›';
 
-COMMENT ON COLUMN post.p_comment IS '³²±â½Ç¸»';
+COMMENT ON COLUMN post.p_comment IS 'ë‚¨ê¸°ì‹¤ë§';
 
-COMMENT ON COLUMN post.bigcat IS '´ëºĞ·ù';
+COMMENT ON COLUMN post.bigcat IS 'ëŒ€ë¶„ë¥˜';
 
-COMMENT ON COLUMN post.smallcat IS '¼ÒºĞ·ù';
+COMMENT ON COLUMN post.smallcat IS 'ì†Œë¶„ë¥˜';
 
 CREATE UNIQUE INDEX PK_post
-	ON post (
-		p_num ASC
-	);
+   ON post (
+      p_num ASC
+   );
 
 ALTER TABLE post
-	ADD
-		CONSTRAINT PK_post
-		PRIMARY KEY (
-			p_num
-		);
+   ADD
+      CONSTRAINT PK_post
+      PRIMARY KEY (
+         p_num
+      );
 
 /* attend */
 CREATE TABLE attend (
-	p_num NUMBER NOT NULL, /* ¹æ¹øÈ£ */
-	c_num NUMBER NOT NULL, /* È¸¿ø¹øÈ£ */
-	a_deposit NUMBER NOT NULL, /* Â÷°¨Æ÷ÀÎÆ® */
-	a_check CHAR check (a_check in ('Y','N')) not null /* Âü¿©¿©ºÎ */
+   p_num NUMBER NOT NULL, /* ë°©ë²ˆí˜¸ */
+   c_num NUMBER NOT NULL, /* íšŒì›ë²ˆí˜¸ */
+   a_deposit NUMBER NOT NULL, /* ì°¨ê°í¬ì¸íŠ¸ */
+   a_check CHAR NOT NULL /* ì°¸ì—¬ì—¬ë¶€ */
 );
 
 COMMENT ON TABLE attend IS 'attend';
 
-COMMENT ON COLUMN attend.p_num IS '¹æ¹øÈ£';
+COMMENT ON COLUMN attend.p_num IS 'ë°©ë²ˆí˜¸';
 
-COMMENT ON COLUMN attend.c_num IS 'È¸¿ø¹øÈ£';
+COMMENT ON COLUMN attend.c_num IS 'íšŒì›ë²ˆí˜¸';
 
-COMMENT ON COLUMN attend.a_deposit IS 'Â÷°¨Æ÷ÀÎÆ®';
+COMMENT ON COLUMN attend.a_deposit IS 'ì°¨ê°í¬ì¸íŠ¸';
 
-COMMENT ON COLUMN attend.a_check IS 'Âü¿©¿©ºÎ';
+COMMENT ON COLUMN attend.a_check IS 'ì°¸ì—¬ì—¬ë¶€';
 
 CREATE UNIQUE INDEX PK_attend
-	ON attend (
-		p_num ASC,
-		c_num ASC
-	);
+   ON attend (
+      p_num ASC,
+      c_num ASC
+   );
 
 ALTER TABLE attend
-	ADD
-		CONSTRAINT PK_attend
-		PRIMARY KEY (
-			p_num,
-			c_num
-		);
+   ADD
+      CONSTRAINT PK_attend
+      PRIMARY KEY (
+         p_num,
+         c_num
+      );
 
 /* nonbuy */
 CREATE TABLE nonbuy (
-	bigcat VARCHAR2(100) NOT NULL, /* ´ëºĞ·ù */
-	smallcat VARCHAR2(100) NOT NULL, /* ¼ÒºĞ·ù */
-	n_place VARCHAR2(100) NOT NULL, /* Àå¼Ò */
-	n_time DATE NOT NULL, /* ½Ã°£ */
-	n_deposit NUMBER NOT NULL /* º¸Áõ±İ */
+   bigcat VARCHAR2(100) NOT NULL, /* ëŒ€ë¶„ë¥˜ */
+   smallcat VARCHAR2(100) NOT NULL, /* ì†Œë¶„ë¥˜ */
+   n_place VARCHAR2(100) NOT NULL, /* ì¥ì†Œ */
+   n_time VARCHAR2(10) NOT NULL, /* ì‹œê°„ */
+   n_deposit NUMBER NOT NULL /* ë³´ì¦ê¸ˆ */
 );
 
 COMMENT ON TABLE nonbuy IS 'nonbuy';
 
-COMMENT ON COLUMN nonbuy.bigcat IS '´ëºĞ·ù';
+COMMENT ON COLUMN nonbuy.bigcat IS 'ëŒ€ë¶„ë¥˜';
 
-COMMENT ON COLUMN nonbuy.smallcat IS '¼ÒºĞ·ù';
+COMMENT ON COLUMN nonbuy.smallcat IS 'ì†Œë¶„ë¥˜';
 
-COMMENT ON COLUMN nonbuy.n_place IS 'Àå¼Ò';
+COMMENT ON COLUMN nonbuy.n_place IS 'ì¥ì†Œ';
 
-COMMENT ON COLUMN nonbuy.n_time IS '½Ã°£';
+COMMENT ON COLUMN nonbuy.n_time IS 'ì‹œê°„';
 
-COMMENT ON COLUMN nonbuy.n_deposit IS 'º¸Áõ±İ';
+COMMENT ON COLUMN nonbuy.n_deposit IS 'ë³´ì¦ê¸ˆ';
 
 CREATE UNIQUE INDEX PK_nonbuy
-	ON nonbuy (
-		bigcat ASC,
-		smallcat ASC
-	);
+   ON nonbuy (
+      bigcat ASC,
+      smallcat ASC
+   );
 
 ALTER TABLE nonbuy
-	ADD
-		CONSTRAINT PK_nonbuy
-		PRIMARY KEY (
-			bigcat,
-			smallcat
-		);
+   ADD
+      CONSTRAINT PK_nonbuy
+      PRIMARY KEY (
+         bigcat,
+         smallcat
+      );
 
 /* ticketbuy */
 CREATE TABLE ticketbuy (
-	bigcat VARCHAR2(100) NOT NULL, /* ´ëºĞ·ù */
-	smallcat VARCHAR2(100) NOT NULL, /* ¼ÒºĞ·ù */
-	t_min NUMBER NOT NULL, /* ÃÖ¼ÒÀÎ¿ø */
-	t_price NUMBER NOT NULL /* ±İ¾× */
+   bigcat VARCHAR2(100) NOT NULL, /* ëŒ€ë¶„ë¥˜ */
+   smallcat VARCHAR2(100) NOT NULL, /* ì†Œë¶„ë¥˜ */
+   t_min NUMBER NOT NULL, /* ìµœì†Œì¸ì› */
+   t_price NUMBER NOT NULL /* ê¸ˆì•¡ */
 );
 
 COMMENT ON TABLE ticketbuy IS 'ticketbuy';
 
-COMMENT ON COLUMN ticketbuy.bigcat IS '´ëºĞ·ù';
+COMMENT ON COLUMN ticketbuy.bigcat IS 'ëŒ€ë¶„ë¥˜';
 
-COMMENT ON COLUMN ticketbuy.smallcat IS '¼ÒºĞ·ù';
+COMMENT ON COLUMN ticketbuy.smallcat IS 'ì†Œë¶„ë¥˜';
 
-COMMENT ON COLUMN ticketbuy.t_min IS 'ÃÖ¼ÒÀÎ¿ø';
+COMMENT ON COLUMN ticketbuy.t_min IS 'ìµœì†Œì¸ì›';
 
-COMMENT ON COLUMN ticketbuy.t_price IS '±İ¾×';
+COMMENT ON COLUMN ticketbuy.t_price IS 'ê¸ˆì•¡';
 
 CREATE UNIQUE INDEX PK_ticketbuy
-	ON ticketbuy (
-		bigcat ASC,
-		smallcat ASC
-	);
+   ON ticketbuy (
+      bigcat ASC,
+      smallcat ASC
+   );
 
 ALTER TABLE ticketbuy
-	ADD
-		CONSTRAINT PK_ticketbuy
-		PRIMARY KEY (
-			bigcat,
-			smallcat
-		);
+   ADD
+      CONSTRAINT PK_ticketbuy
+      PRIMARY KEY (
+         bigcat,
+         smallcat
+      );
 
+/* ìƒˆ í…Œì´ë¸” */
+CREATE TABLE TABLE (
+);
 
+COMMENT ON TABLE TABLE IS 'ìƒˆ í…Œì´ë¸”';
 
 /* review */
 CREATE TABLE review (
-	p_num NUMBER NOT NULL, /* ¹æ¹øÈ£ */
-	c_num NUMBER NOT NULL, /* È¸¿ø¹øÈ£ */
-	r_good NUMBER NOT NULL, /* ÁÁ¾Æ¿ä */
-	r_review VARCHAR2(300) /* ÈÄ±â */
+   p_num NUMBER NOT NULL, /* ë°©ë²ˆí˜¸ */
+   c_num NUMBER NOT NULL, /* íšŒì›ë²ˆí˜¸ */
+   r_good NUMBER NOT NULL, /* ì¢‹ì•„ìš” */
+   r_review VARCHAR2(300) /* í›„ê¸° */
 );
 
 COMMENT ON TABLE review IS 'review';
 
-COMMENT ON COLUMN review.p_num IS '¹æ¹øÈ£';
+COMMENT ON COLUMN review.p_num IS 'ë°©ë²ˆí˜¸';
 
-COMMENT ON COLUMN review.c_num IS 'È¸¿ø¹øÈ£';
+COMMENT ON COLUMN review.c_num IS 'íšŒì›ë²ˆí˜¸';
 
-COMMENT ON COLUMN review.r_good IS 'ÁÁ¾Æ¿ä';
+COMMENT ON COLUMN review.r_good IS 'ì¢‹ì•„ìš”';
 
-COMMENT ON COLUMN review.r_review IS 'ÈÄ±â';
+COMMENT ON COLUMN review.r_review IS 'í›„ê¸°';
 
 CREATE UNIQUE INDEX PK_review
-	ON review (
-		p_num ASC,
-		c_num ASC
-	);
+   ON review (
+      p_num ASC,
+      c_num ASC
+   );
 
 ALTER TABLE review
-	ADD
-		CONSTRAINT PK_review
-		PRIMARY KEY (
-			p_num,
-			c_num
-		);
+   ADD
+      CONSTRAINT PK_review
+      PRIMARY KEY (
+         p_num,
+         c_num
+      );
 
 ALTER TABLE post
-	ADD
-		CONSTRAINT FK_nonbuy_TO_post
-		FOREIGN KEY (
-			bigcat,
-			smallcat
-		)
-		REFERENCES nonbuy (
-			bigcat,
-			smallcat
-		);
+   ADD
+      CONSTRAINT FK_nonbuy_TO_post
+      FOREIGN KEY (
+         bigcat,
+         smallcat
+      )
+      REFERENCES nonbuy (
+         bigcat,
+         smallcat
+      );
 
 ALTER TABLE post
-	ADD
-		CONSTRAINT FK_ticketbuy_TO_post
-		FOREIGN KEY (
-			bigcat,
-			smallcat
-		)
-		REFERENCES ticketbuy (
-			bigcat,
-			smallcat
-		);
+   ADD
+      CONSTRAINT FK_ticketbuy_TO_post
+      FOREIGN KEY (
+         bigcat,
+         smallcat
+      )
+      REFERENCES ticketbuy (
+         bigcat,
+         smallcat
+      );
 
 ALTER TABLE attend
-	ADD
-		CONSTRAINT FK_post_TO_attend
-		FOREIGN KEY (
-			p_num
-		)
-		REFERENCES post (
-			p_num
-		);
+   ADD
+      CONSTRAINT FK_post_TO_attend
+      FOREIGN KEY (
+         p_num
+      )
+      REFERENCES post (
+         p_num
+      );
 
 ALTER TABLE attend
-	ADD
-		CONSTRAINT FK_customer_TO_attend
-		FOREIGN KEY (
-			c_num
-		)
-		REFERENCES customer (
-			c_num
-		);
+   ADD
+      CONSTRAINT FK_customer_TO_attend
+      FOREIGN KEY (
+         c_num
+      )
+      REFERENCES customer (
+         c_num
+      );
 
 ALTER TABLE review
-	ADD
-		CONSTRAINT FK_attend_TO_review
-		FOREIGN KEY (
-			p_num,
-			c_num
-		)
-		REFERENCES attend (
-			p_num,
-			c_num
-		);
+   ADD
+      CONSTRAINT FK_attend_TO_review
+      FOREIGN KEY (
+         p_num,
+         c_num
+      )
+      REFERENCES attend (
+         p_num,
+         c_num
+      );
+      
+      
