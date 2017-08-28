@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p><a href="Login.jsp">1. 로그인</a></p>
-<p><a href="InsertCustomer.jsp">2. 회원가입</a></p>
-<p><a href="IDandPasswordSearch.jsp">3. ID찾기</a></p>
-<p><a href="IDandPasswordSearch.jsp">4. Password찾기</a></p>
+
 </body>
 </html>

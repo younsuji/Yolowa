@@ -109,7 +109,7 @@ CREATE UNIQUE INDEX PK_attend
       p_num ASC,
       c_num ASC
    );
-
+select * from customer
 ALTER TABLE attend
    ADD
       CONSTRAINT PK_attend
@@ -127,11 +127,11 @@ CREATE TABLE nonbuy (
    n_time VARCHAR2(10) NOT NULL, /* ì‹œê°„ */
    n_deposit NUMBER NOT NULL /* ë³´ì¦ê¸ˆ */
 =======
-	bigcat VARCHAR2(100) NOT NULL, /* ´ëºÐ·ù */
-	smallcat VARCHAR2(100) NOT NULL, /* ¼ÒºÐ·ù */
-	n_place VARCHAR2(100) NOT NULL, /* Àå¼Ò */
-	n_time VARCHAR2(10) NOT NULL, /* ½Ã°£ */
-	n_deposit NUMBER NOT NULL /* º¸Áõ±Ý */
+	bigcat VARCHAR2(100) NOT NULL, /* ï¿½ï¿½Ð·ï¿½ */
+	smallcat VARCHAR2(100) NOT NULL, /* ï¿½ÒºÐ·ï¿½ */
+	n_place VARCHAR2(100) NOT NULL, /* ï¿½ï¿½ï¿½ */
+	n_time VARCHAR2(10) NOT NULL, /* ï¿½Ã°ï¿½ */
+	n_deposit NUMBER NOT NULL /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 >>>>>>> a482b74a3cf110ea19fd7f5099acdf88c6443d1e
 );
 
