@@ -1,6 +1,5 @@
 package com.yolowa.controller;
 
-
 import java.util.Scanner;
 import com.yolowa.model.CustomerDAO;
 import com.yolowa.model.CustomerDTO;
@@ -74,6 +73,9 @@ public class CustomerController {
 					break;
 				}
 			}
+			default:
+				System.out.println("번호를 확인하세요.");
+				break;
 			}
 		}
 	}

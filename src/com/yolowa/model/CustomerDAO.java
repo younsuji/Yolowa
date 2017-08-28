@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import util.DBUtil;
 
 public class CustomerDAO {
@@ -74,6 +76,26 @@ public class CustomerDAO {
 		return count;
 	}
 
+	//전체검색
+	public List<CustomerDTO> selectAll() {
+		List<CustomerDTO> customer_list = new ArrayList<>();
+		String sql = "select * from customer";
+		conn = DBUtil.getConnect();
+		try {
+			st = conn.prepareStatement(sql);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				CustomerDTO customer_dto = makeCustomer(rs);
+				customer_list.add(customer_dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(conn, st, rs);
+		}
+		return customer_list;
+	}
+	
 	// id로 검색하기
 	public CustomerDTO selectByC_id(String c_id) {
 		CustomerDTO customer_dto = null;
