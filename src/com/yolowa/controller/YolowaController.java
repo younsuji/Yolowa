@@ -86,6 +86,9 @@ public class YolowaController {
 				System.out.println("password >> " + customer_dto.getC_password());
 				break;
 			}
+			default:
+				System.out.println("번호를 확인하세요.");
+				break;
 			}
 		}
 	}
