@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
- <h1>윤경이네 ㅈ집입니다. </h1>
+<p><a href="">1. 로그인</a></p>
+<p><a href="InsertCustomer.jsp">2. 회원가입</a></p>
+<p><a href="">3. ID찾기</a></p>
+<p><a href="">4. Password찾기</a></p>
 </body>
 </html>

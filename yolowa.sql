@@ -33,7 +33,7 @@ ALTER TABLE customer
 		PRIMARY KEY (
 			c_num
 		);
-
+select * from customer;
 /* post */
 CREATE TABLE post (
 	p_num NUMBER NOT NULL, /* ¹æ¹øÈ£ */
