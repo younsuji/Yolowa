@@ -26,7 +26,7 @@ public class TicketbuyDAO {
 		try {
 			st = conn.prepareStatement(sql);
 			rs = st.executeQuery();
-			while (rs.next()){
+			while (rs.next()) {
 				TicketbuyDTO ticketbuy_dto = makeTicketbuy_DTO(rs);
 				ticketbuy_list.add(ticketbuy_dto);
 			}
@@ -37,9 +37,8 @@ public class TicketbuyDAO {
 		}
 		return ticketbuy_list;
 	}
-	//대분류로 DTO찾아서 list return 끝 
+	// 대분류로 DTO찾아서 list return 끝
 
-	
 	// 전체보기
 	public List<TicketbuyDTO> selectAllticketbuy() {
 		List<TicketbuyDTO> ticketbuy_list = new ArrayList<>();
@@ -60,9 +59,9 @@ public class TicketbuyDAO {
 		}
 		return ticketbuy_list;
 	}
-	//전체보기 끝
+	// 전체보기 끝
 
-	//추가
+	// 추가
 	public int addticketbuy(TicketbuyDTO ticketbuy_dto) {
 		String sql = "insert into ticketbuy values (?, ?, ?, ?) ";
 		conn = DBUtil.getConnect();
@@ -82,9 +81,9 @@ public class TicketbuyDAO {
 		}
 		return count;
 	}
-	//추가 끝
-	
-	//ticketbuyDTO 생성
+	// 추가 끝
+
+	// ticketbuyDTO 생성
 	public TicketbuyDTO makeTicketbuy_DTO(ResultSet rs2) throws SQLException {
 		String bigcat = rs2.getString(1);
 		String smallcat = rs2.getString(2);

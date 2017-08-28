@@ -1,8 +1,6 @@
 package com.yolowa.controller;
 
-import java.util.List;
 import java.util.Scanner;
-
 import com.yolowa.model.CustomerDAO;
 import com.yolowa.model.CustomerDTO;
 import com.yolowa.view.CustomerView;
@@ -12,13 +10,14 @@ public class YolowaController {
 	public static void main(String[] args) {
 		CustomerDAO customer_dao = new CustomerDAO();
 		CustomerDTO customer_dto = null;
-		List<CustomerDTO> customer_list = null;
 		int result;
 		String msg;
 		Scanner sc = new Scanner(System.in);
 		Yolowa: while (true) {
 			System.out.println("1. 로그인");
 			System.out.println("2. 회원가입");
+			System.out.println("3. id 찾기");
+			System.out.println("4. password 찾기");
 			System.out.println("0. 끝");
 			int i = sc.nextInt();
 			switch (i) {
@@ -31,7 +30,7 @@ public class YolowaController {
 				System.out.println("password >> ");
 				String c_password = sc.nextLine();
 				customer_dto = customer_dao.selectByC_idpass(c_id, c_password);
-				if (customer_dto== null) {
+				if (customer_dto == null) {
 					System.out.println("저장된 정보가 없습니다.");
 				}
 				break;
@@ -57,6 +56,34 @@ public class YolowaController {
 				customer_dto.setC_num(customer_dao.selectC_num(customer_dto));
 				CustomerView.print(msg);
 				CustomerView.print(customer_dto);
+				break;
+			}
+			case 3: {
+				System.out.println("id 찾기");
+				System.out.print("이름 >> ");
+				String c_name = sc.nextLine();
+				System.out.print("전화번호 >> ");
+				String c_phone = sc.nextLine();
+				customer_dto = customer_dao.selectByC_namephone(c_name, c_phone);
+				if (customer_dto == null) {
+					System.out.println("저장된 정보가 없습니다.");
+				}
+				System.out.println("id >> " + customer_dto.getC_id());
+				break;
+			}
+			case 4: {
+				System.out.println("password 찾기");
+				System.out.print("id >> ");
+				String c_id = sc.nextLine();
+				System.out.print("이름 >> ");
+				String c_name = sc.nextLine();
+				System.out.print("전화번호 >> ");
+				String c_phone = sc.nextLine();
+				customer_dto = customer_dao.selectByC_idnamephone(c_id, c_name, c_phone);
+				if (customer_dto == null) {
+					System.out.println("저장된 정보가 없습니다.");
+				}
+				System.out.println("password >> " + customer_dto.getC_password());
 				break;
 			}
 			}

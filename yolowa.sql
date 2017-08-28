@@ -111,11 +111,19 @@ ALTER TABLE attend
 
 /* nonbuy */
 CREATE TABLE nonbuy (
+<<<<<<< HEAD
    bigcat VARCHAR2(100) NOT NULL, /* ëŒ€ë¶„ë¥˜ */
    smallcat VARCHAR2(100) NOT NULL, /* ì†Œë¶„ë¥˜ */
    n_place VARCHAR2(100) NOT NULL, /* ìž¥ì†Œ */
    n_time VARCHAR2(10) NOT NULL, /* ì‹œê°„ */
    n_deposit NUMBER NOT NULL /* ë³´ì¦ê¸ˆ */
+=======
+	bigcat VARCHAR2(100) NOT NULL, /* ´ëºÐ·ù */
+	smallcat VARCHAR2(100) NOT NULL, /* ¼ÒºÐ·ù */
+	n_place VARCHAR2(100) NOT NULL, /* Àå¼Ò */
+	n_time VARCHAR2(10) NOT NULL, /* ½Ã°£ */
+	n_deposit NUMBER NOT NULL /* º¸Áõ±Ý */
+>>>>>>> a482b74a3cf110ea19fd7f5099acdf88c6443d1e
 );
 
 COMMENT ON TABLE nonbuy IS 'nonbuy';

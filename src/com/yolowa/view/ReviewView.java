@@ -4,14 +4,14 @@ import java.util.List;
 import com.yolowa.model.ReviewDTO;
 
 public class ReviewView {
-	public static void print(List<ReviewDTO> rlist) {
-		for (ReviewDTO bdto : rlist) {
-			System.out.println(bdto);
+	public static void print(List<ReviewDTO> review_list) {
+		for (ReviewDTO review_dto : review_list) {
+			System.out.println(review_dto);
 		}
 	}
 
-	public static void print(ReviewDTO rdto) {
-		System.out.println(rdto);
+	public static void print(ReviewDTO review_dto) {
+		System.out.println(review_dto);
 	}
 
 	public static void print(String msg) {
