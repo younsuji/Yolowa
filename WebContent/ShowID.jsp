@@ -14,8 +14,6 @@
 CustomerDAO cdao = new CustomerDAO();
 String c_name = request.getParameter("c_name");
 String c_phone = request.getParameter("c_phone");
-
-System.out.println(c_name+" "+c_phone);
 String c_id="ID가 존재하지 않습니다.";
 
 CustomerDTO cdto = cdao.selectByC_namephone(c_name, c_phone);
